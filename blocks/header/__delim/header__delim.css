@@ -1,0 +1,7 @@
+.header__delim{
+  height: 0;
+  width: 100%;
+  border-top: 1px solid #545454;
+  opacity: 70%;
+  margin-top: 41px;
+}

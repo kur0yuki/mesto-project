@@ -1,11 +1,12 @@
 .page {
-  background-color: #2a2c2f;
+  background-color: #000;
   color: #fff;
   font-family: 'Inter', Arial, sans-serif;
-  padding: 28px 48px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 45px 0 60px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(min-content, 1fr));
+  max-width: 880px;
+  margin: auto;
 
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -14,11 +15,6 @@
   -moz-text-size-adjust: 100%;
 }
 
-@media screen and (max-width: 1024px){
-  .page{
-    padding: 28px 0 24px;
-  }
-}
 
 
 @media screen and (max-width: 320px){
