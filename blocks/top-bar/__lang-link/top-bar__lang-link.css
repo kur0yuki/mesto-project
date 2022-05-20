@@ -1,0 +1,16 @@
+.top-bar__lang-link {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 1.2;
+  margin: 18px 18px 6px 0;
+}
+
+.top-bar__lang-link:last-child {
+  margin-right: 0;
+}
+
+@media screen  and (max-width: 320px){
+  .top-bar__lang-link{
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,5 @@
+@media screen  and (max-width: 320px){
+  .top-bar__logo{
+    width: 142px;
+  }
+}

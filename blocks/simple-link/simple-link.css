@@ -1,0 +1,11 @@
+.simple-link{
+  color: inherit;
+  text-decoration: inherit;
+  opacity: 1;
+  transition: opacity 0.1s;
+}
+
+
+.simple-link:hover{
+  opacity: 80%;
+}
