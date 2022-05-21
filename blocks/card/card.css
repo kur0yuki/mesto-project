@@ -1,31 +1,13 @@
 .card {
-  display: grid;
-  grid-template-columns: min-content 1fr;
-  column-gap: 40px;
-  row-gap: 48px;
-  grid-auto-flow: row;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  color: #000;
+  width: 100%;
+  border-radius: 9px;
 }
 
-@media screen and (max-width: 1024px){
-  .card {
-    column-gap: 32px;
-  }
+.card__image{
+  width: 100%;
 }
 
-@media screen and (max-width: 768px){
-  .card {
-    column-gap: 28px;
-  }
-}
-
-@media screen and (max-width: 720px){
-  .card {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media screen and (max-width: 320px){
-  .card {
-    row-gap: 32px;
-  }
-}

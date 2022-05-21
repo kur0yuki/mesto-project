@@ -13,16 +13,23 @@
 </header>
 <main class="content">
   <section class="user-info">
-    <img src="images/user-pic.jpg" alt="автор" class="user__avatar">
-    <h1>Жак-Ив Кусто</h1>
-    <p class="user__description"></p>
-    <div class="user__edit"></div>
+    <img src="images/user-pic.jpg" alt="автор" class="user-info__avatar">
+    <div class="user-info__info">
+      <div class="user-info__name-container">
+        <h1 class="user-info__name">Жак-Ив Кусто</h1>
+        <img class="user-info__edit-name" alt="редактировать" src="images/pen.svg">
+      </div>
+      <p class="user-info__description">Исследователь океана</p>
+      </div>
+    <img class="user-info__add" src="images/plus.svg">
   </section>
   <section class="photo-grid">
     <div class="card">
-      <img src="" alt="" class="card__image">
-      <h2 class="card__title"></h2>
-      <div class="card__like"></div>
+      <img src="images/karachaevsk.jpg" alt="" class="card__image">
+      <div class="card__desc">
+      <h2 class="card__title">Карачаевск</h2>
+      <div class="card__like">x</div>
+        </div>
     </div>
     <div class="card"><img src="" alt="" class="card__image">
       <h2 class="card__title"></h2>
@@ -47,7 +54,7 @@
   </section>
 </main>
 <footer class="footer">
-<p class="footer__copyright">© 2020 Mesto Russia</p>
+  <p class="footer__copyright">© 2020 Mesto Russia</p>
 </footer>
 
 </body>

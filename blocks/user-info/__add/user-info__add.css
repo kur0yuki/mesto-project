@@ -1,0 +1,9 @@
+.user-info__add {
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 62px;
+}

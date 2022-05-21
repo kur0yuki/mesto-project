@@ -3,8 +3,8 @@
   color: #fff;
   font-family: 'Inter', Arial, sans-serif;
   padding: 45px 0 60px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(min-content, 1fr));
+  display: flex;
+ flex-direction: column;
   max-width: 880px;
   margin: auto;
 
