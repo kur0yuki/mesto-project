@@ -3,3 +3,8 @@
   width: 120px;
 }
 
+@media screen and (max-width: 600px){
+  .user-info__avatar{
+    margin-bottom: 24px;
+  }
+}

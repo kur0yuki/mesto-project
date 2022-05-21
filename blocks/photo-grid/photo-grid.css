@@ -3,9 +3,14 @@
   column-gap: 17px;
   row-gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
-  padding: 50px 0;
+  padding: 50px 0 67px;
   width: 100%;
   grid-auto-flow: row;
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 600px){
+  .photo-grid{
+    padding: 36px 19px 48px;
+  }
+}

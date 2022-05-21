@@ -5,3 +5,11 @@
   margin: 0;
 
 }
+
+@media screen and (max-width: 600px) {
+  .user-info__name {
+    font-size: 27px;
+    line-height: 33px;
+    text-align: center;
+  }
+}

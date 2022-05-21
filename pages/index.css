@@ -14,6 +14,7 @@
 @import url('../blocks/user-info/__edit-name/user-info__edit-name.css');
 @import url('../blocks/user-info/__name/user-info__name.css');
 @import url('../blocks/user-info/__name-container/user-info__name-container.css');
+@import url('../blocks/user-info/__info/user-info__info.css');
 
 @import url('../blocks/photo-grid/photo-grid.css');
 @import url('../blocks/card/card.css');
@@ -21,3 +22,6 @@
 @import url('../blocks/card/__image/card__image.css');
 @import url('../blocks/card/__title/card__title.css');
 @import url('../blocks/card/__like/card__like.css');
+
+@import url('../blocks/footer/footer.css');
+@import url('../blocks/footer/__copyright/footer__copyright.css');

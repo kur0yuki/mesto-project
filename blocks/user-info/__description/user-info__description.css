@@ -5,3 +5,11 @@
   padding-top: 7px;
 }
 
+@media screen and (max-width: 600px) {
+  .user-info__description {
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+
+  }
+}
