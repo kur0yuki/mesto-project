@@ -1,24 +1,3 @@
 .card__image {
-  width: 460px;
-  object-position: center;
-}
-
-
-@media screen and (max-width: 1024px) {
-  .card__image {
-    width: 440px;
-  }
-}
-
-
-@media screen and (max-width: 768px) {
-  .card__image {
-    width: 340px;
-  }
-}
-
-@media screen and (max-width: 720px) {
-  .card__image {
-    width: 100%;
-  }
+  width: 100%;
 }

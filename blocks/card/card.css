@@ -1,13 +1,9 @@
 .card {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   background-color: #fff;
   color: #000;
   width: 100%;
   border-radius: 9px;
+  overflow: hidden;
 }
-
-.card__image{
-  width: 100%;
-}
-
