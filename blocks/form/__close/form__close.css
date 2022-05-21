@@ -1,0 +1,16 @@
+.form__close{
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .form__close{
+    top: -36px;
+    right: -4px;
+    transform: scale(0.625);
+  }
+}

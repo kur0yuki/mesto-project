@@ -4,3 +4,15 @@
   padding: 0;
   align-self: flex-end;
 }
+
+.card__like:hover{
+  opacity: 0.5;
+}
+.card__like:hover:active{
+  opacity: 1;
+}
+.card__like:active{
+  background-image: url("../../../images/union.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}

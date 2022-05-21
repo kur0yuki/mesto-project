@@ -17,53 +17,53 @@
     <div class="user-panel__info">
       <div class="user-panel__name-container">
         <h1 class="user-panel__name">Жак-Ив Кусто</h1>
-        <button class="user-panel__edit-name" ><img alt="редактировать" src="images/pen.svg"></button>
+        <button class="user-panel__edit-name button" ><img alt="редактировать" src="images/pen.svg"></button>
       </div>
       <p class="user-panel__description">Исследователь океана</p>
     </div>
-    <button  class="user-panel__add"><img src="images/plus.svg"></button>
+    <button  class="user-panel__add button"><img src="images/plus.svg"></button>
   </section>
   <section class="photo-grid">
     <div class="card">
       <img src="images/karachaevsk.jpg" alt="Карачаевск" class="card__image">
       <div class="card__desc">
         <h2 class="card__title">Карачаевск</h2>
-        <button class="card__like"><img src="images/like.svg" alt="лайк"></button>
+        <button class="card__like button"><img src="images/like.svg" alt="лайк"></button>
       </div>
     </div>
     <div class="card">
       <img src="images/elbrus.jpg" alt="Гора Эльбрус" class="card__image">
       <div class="card__desc">
         <h2 class="card__title">Гора Эльбрус</h2>
-        <button class="card__like"><img src="images/like.svg" alt="лайк"></button>
+        <button class="card__like button"><img src="images/like.svg" alt="лайк"></button>
       </div>
     </div>
     <div class="card">
       <img src="images/dombai.jpg" alt="Домбай" class="card__image">
       <div class="card__desc">
         <h2 class="card__title">Домбай</h2>
-        <button class="card__like"><img src="images/like.svg" alt="лайк"></button>
+        <button class="card__like button"><img src="images/like.svg" alt="лайк"></button>
       </div>
     </div>
     <div class="card">
       <img src="images/dombai.jpg" alt="Домбай" class="card__image">
       <div class="card__desc">
         <h2 class="card__title">Домбай</h2>
-        <button class="card__like"><img src="images/like.svg" alt="лайк"></button>
+        <button class="card__like button"><img src="images/like.svg" alt="лайк"></button>
       </div>
     </div>
     <div class="card">
       <img src="images/elbrus.jpg" alt="Гора Эльбрус" class="card__image">
       <div class="card__desc">
         <h2 class="card__title">Гора Эльбрус</h2>
-       <button class="card__like"><img src="images/like.svg" alt="лайк"></button>
+       <button class="card__like button"><img src="images/like.svg" alt="лайк"></button>
       </div>
     </div>
     <div class="card">
       <img src="images/karachaevsk.jpg" alt="Карачаевск" class="card__image">
       <div class="card__desc">
         <h2 class="card__title">Карачаево-Черкессия</h2>
-        <button class="card__like"><img src="images/like.svg" alt="лайк"></button>
+        <button class="card__like button"><img src="images/like.svg" alt="лайк"></button>
       </div>
     </div>
   </section>
@@ -72,5 +72,16 @@
   <p class="footer__copyright">© 2020 Mesto Russia</p>
 </footer>
 
+<div class="popup popup_opened">
+  <form class="form">
+    <button class="form__close button"><img src="images/Close%20Icon.svg" alt="закрыть"></button>
+    <h2 class="form__title">Редактировать профиль</h2>
+    <fieldset class="form__input-container">
+      <input type="text" class="form-item" placeholder="Имя" value="Жак-Ив Кусто">
+      <input type="text" class="form-item" placeholder="Описание" value="Исследователь океана">
+    </fieldset>
+    <button class="form__button button" type="submit">Сохранить</button>
+  </form>
+</div>
 </body>
 </html>
