@@ -1,11 +1,11 @@
-.user-info {
+.user-panel {
   display: flex;
   align-items: center;
   gap: 30px;
 }
 
 @media screen and (max-width: 600px){
-  .user-info{
+  .user-panel{
     flex-direction: column;
     gap: 0;
     padding: 0 19px;

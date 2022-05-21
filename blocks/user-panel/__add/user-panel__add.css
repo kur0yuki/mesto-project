@@ -1,4 +1,4 @@
-.user-info__add {
+.user-panel__add {
   border: 2px solid #FFFFFF;
   border-radius: 2px;
   margin-left: auto;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 600px){
-  .user-info__add{
+  .user-panel__add{
     margin-left: 0;
     width: 16px;
     padding: 17px calc((100% - 16px)/2);
