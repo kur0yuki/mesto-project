@@ -5,7 +5,7 @@
   font-size: 18px;
   line-height: 22px;
   text-align: center;
-  padding: 14px 0 18px;
+  padding: 14px 0;
   border: 0;
   border-radius: 2px;
 }
@@ -19,6 +19,5 @@
   .form__button {
     font-size: 14px;
     line-height: 17px;
-    padding: 14px 0;
   }
 }
