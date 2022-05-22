@@ -1,14 +1,10 @@
 @import url('../vendor/normalize.css');
 @import url('../fonts/fonts.css');
-
 @import url('../blocks/page/page.css');
-
 @import url('../blocks/button/button.css');
-
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__delim/header__delim.css');
 @import url('../blocks/header/__logo/header__logo.css');
-
 @import url('../blocks/user-panel/user-panel.css');
 @import url('../blocks/user-panel/__add/user-panel__add.css');
 @import url('../blocks/user-panel/__avatar/user-panel__avatar.css');
@@ -17,20 +13,16 @@
 @import url('../blocks/user-panel/__name/user-panel__name.css');
 @import url('../blocks/user-panel/__name-container/user-panel__name-container.css');
 @import url('../blocks/user-panel/__info/user-panel__info.css');
-
 @import url('../blocks/photo-grid/photo-grid.css');
 @import url('../blocks/card/card.css');
 @import url('../blocks/card/__desc/card__desc.css');
 @import url('../blocks/card/__image/card__image.css');
 @import url('../blocks/card/__title/card__title.css');
 @import url('../blocks/card/__like/card__like.css');
-
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
-
 @import url('../blocks/popup/popup.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
-
 @import url('../blocks/form/form.css');
 @import url('../blocks/form/__close/form__close.css');
 @import url('../blocks/form/__title/form__title.css');

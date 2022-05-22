@@ -3,8 +3,8 @@
   width: 120px;
 }
 
-@media screen and (max-width: 600px){
-  .user-panel__avatar{
+@media screen and (max-width: 600px) {
+  .user-panel__avatar {
     margin-bottom: 24px;
   }
 }

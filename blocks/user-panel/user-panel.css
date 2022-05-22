@@ -4,8 +4,8 @@
   gap: 30px;
 }
 
-@media screen and (max-width: 600px){
-  .user-panel{
+@media screen and (max-width: 600px) {
+  .user-panel {
     flex-direction: column;
     gap: 0;
     padding: 0 19px;
