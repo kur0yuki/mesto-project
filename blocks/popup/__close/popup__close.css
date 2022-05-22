@@ -1,16 +1,21 @@
-.form__close {
+.popup__close {
   position: absolute;
   top: -40px;
   right: -40px;
   background: transparent;
   border: none;
   padding: 0;
+  width: 32px;
+  height: 32px;
 }
 
 @media screen and (max-width: 600px) {
-  .form__close {
+  .popup__close {
     top: -36px;
     right: -4px;
-    transform: scale(0.625);
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
+    background-image: url("../../../images/Close Icon.svg");
   }
 }

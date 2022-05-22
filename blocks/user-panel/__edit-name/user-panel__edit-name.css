@@ -1,14 +1,20 @@
 .user-panel__edit-name {
   border: 1px solid #fff;
-  padding: 7px;
-  line-height: 0;
   margin-bottom: 9px;
   background-color: transparent;
+  width: 24px;
+  height: 24px;
+  background-image: url("../../../images/pen.svg");
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .user-panel__edit-name {
     margin-bottom: 0;
     align-self: center;
+    width: 18px;
+    height: 18px;
+    background-size: 7.5px;
   }
 }

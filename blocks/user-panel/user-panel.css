@@ -2,12 +2,13 @@
   display: flex;
   align-items: center;
   gap: 30px;
+  padding-top: 39px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .user-panel {
     flex-direction: column;
     gap: 0;
-    padding: 0 19px;
+    padding: 37px 19px 0;
   }
 }

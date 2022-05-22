@@ -3,6 +3,11 @@
   background-color: transparent;
   padding: 0;
   align-self: flex-end;
+  background-image: url("../../../images/like.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 22px;
+  height: 100%;
 }
 
 .card__like:hover {
