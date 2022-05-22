@@ -1,5 +1,7 @@
 # Проект: Место
 
+[Открыть](https://kur0yuki.github.io/mesto-project/)
+
 ### Обзор
 
 * Figma
