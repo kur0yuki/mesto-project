@@ -25,6 +25,7 @@ addBtn.addEventListener('click', () => {
     const cardEl = cardTemplate.cloneNode(true);
     cardEl.querySelector('.card__title').textContent = evt1.target.closest('form').querySelector('.form__item[name="title"]').value;
     cardEl.querySelector('.card__image').src = evt1.target.closest('form').querySelector('.form__item[name="link"]').value;
+    addLikeEvent(cardEl.querySelector('.card__like'));
     cardField.prepend(cardEl);
 
     evt1.target.closest('.popup').classList.remove('popup_opened');
