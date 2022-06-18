@@ -1,4 +1,4 @@
-const editUserBtn=document.querySelector('.user-panel__edit-name');
+const editUserBtn = document.querySelector('.user-panel__edit-name');
 
 editUserBtn.addEventListener('click', () => {
   const body = document.querySelector('.page');
@@ -26,7 +26,7 @@ editUserBtn.addEventListener('click', () => {
     nameEl.textContent = evt1.target.closest('form').querySelector('.form-item[name="name"]').value;
     const descEl = document.createElement('p');
     descEl.classList.add('user-panel__description');
-    descEl.textContent=evt1.target.closest('form').querySelector('.form-item[name="description"]').value;
+    descEl.textContent = evt1.target.closest('form').querySelector('.form-item[name="description"]').value;
 
     document.querySelector('.user-panel__name').replaceWith(nameEl);
     document.querySelector('.user-panel__description').replaceWith(descEl);
@@ -39,38 +39,3 @@ editUserBtn.addEventListener('click', () => {
 });
 
 
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-const cardTemplate=document.querySelector('#card').content;
-const cardField=document.querySelector('.photo-grid');
-for (let i=0; i<initialCards.length;i++){
-  const cardEl = cardTemplate.cloneNode(true);
-  cardEl.querySelector('.card__title').textContent=initialCards[i].name;
-  cardEl.querySelector('.card__image').src=initialCards[i].link;
-  cardField.append(cardEl);
-}
