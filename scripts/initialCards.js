@@ -32,25 +32,3 @@ for (let i = 0; i < initialCards.length; i++) {
   cardEl.querySelector('.card__image').src = initialCards[i].link;
   cardField.append(cardEl);
 }
-
-const addBtn = document.querySelector('.user-panel__add');
-addBtn.addEventListener('click', () => {
-  const body = document.querySelector('.page');
-  const name = document.querySelector('.user-panel__name').textContent;
-  const desc = document.querySelector('.user-panel__description').textContent;
-  body.insertAdjacentHTML("beforeEnd", `
-  <div class="popup popup_opened">
-  <div class="popup__container">
-    <h2 class="popup__title">Редактировать профиль</h2>
-    <button class="popup__close button" aria-label="закрыть"></button>
-  <form class="form" name="user">
-    <fieldset class="form__input-container">
-      <input class="form-item" name="name" placeholder="Имя" type="text" value="${name}">
-      <input class="form-item" name="description" placeholder="Описание" type="text" value="${desc}">
-    </fieldset>
-    <button class="form__button button" type="submit">Сохранить</button>
-  </form>
-    </div>
-</div>
-  `);
-});
