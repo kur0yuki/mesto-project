@@ -1,5 +1,5 @@
 const addBtn = document.querySelector('.user-panel__add');
-addBtn.addEventListener('click', () => {
+addBtn.addEventListener('click', (e) => {
   const popup = document.querySelector('.popup');
   const inputTemplate = document.querySelector('#input').content;
   const nameInput = inputTemplate.cloneNode(true);
@@ -17,7 +17,7 @@ addBtn.addEventListener('click', () => {
   popup.querySelector('.popup__title').textContent="Новое место";
 
   popup.classList.add('popup_opened');
-  document.querySelector('.form__button').addEventListener('click', evt1 => {
+  document.querySelector('.form').addEventListener('submit', evt1 => {
     evt1.preventDefault();
     const cardTemplate = document.querySelector('#card').content;
     const cardField = document.querySelector('.photo-grid');
@@ -26,10 +26,11 @@ addBtn.addEventListener('click', () => {
     cardEl.querySelector('.card__title').textContent = evt1.target.closest('form').querySelector('.form__item[name="title"]').value;
     cardEl.querySelector('.card__image').src = evt1.target.closest('form').querySelector('.form__item[name="link"]').value;
     addLikeEvent(cardEl.querySelector('.card__like'));
+    addDeleteEvent(cardEl.querySelector('.card__trash'));
     cardField.prepend(cardEl);
 
     evt1.target.closest('.popup').classList.remove('popup_opened');
-  });
+  }, {'once': true});
 
   document.querySelector('.popup__close').addEventListener('click', evt1 => {
     evt1.target.closest('.popup').classList.remove('popup_opened');

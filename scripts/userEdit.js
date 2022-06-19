@@ -20,7 +20,7 @@ editUserBtn.addEventListener('click', () => {
   popup.querySelector('.form__input-container').replaceWith(inputContainer);
 
   popup.classList.add('popup_opened');
-  document.querySelector('.form__button').addEventListener('click', evt1 => {
+  document.querySelector('.form').addEventListener('submit', evt1 => {
     evt1.preventDefault();
     const nameEl = document.createElement('h1');
     nameEl.classList.add('user-panel__name');
@@ -32,7 +32,7 @@ editUserBtn.addEventListener('click', () => {
     document.querySelector('.user-panel__name').replaceWith(nameEl);
     document.querySelector('.user-panel__description').replaceWith(descEl);
     evt1.target.closest('.popup').classList.remove('popup_opened');
-  });
+  }, {'once':true});
 
   document.querySelector('.popup__close').addEventListener('click', evt1 => {
     evt1.target.closest('.popup').classList.remove('popup_opened');
