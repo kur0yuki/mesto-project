@@ -8,6 +8,7 @@ function addEnlargeEvent(image) {
     const card = evt.target.closest('.card');
 
     popupImage.querySelector('.popup__image').src=image.src;
+    popupImage.querySelector('.popup__image').alt=image.alt;
     popupImage.querySelector('.popup__image-caption').textContent=card.querySelector('.card__title').textContent;
     popupImage.classList.add('popup_opened');
   });

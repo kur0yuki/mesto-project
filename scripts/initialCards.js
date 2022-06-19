@@ -29,6 +29,7 @@ const cardField = document.querySelector('.photo-grid');
 for (let i = 0; i < initialCards.length; i++) {
   const cardEl = cardTemplate.cloneNode(true);
   cardEl.querySelector('.card__title').textContent = initialCards[i].name;
+  cardEl.querySelector('.card__image').alt = initialCards[i].name;
   cardEl.querySelector('.card__image').src = initialCards[i].link;
   cardField.append(cardEl);
 }

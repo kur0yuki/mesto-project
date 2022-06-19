@@ -9,6 +9,7 @@ popupPlace.querySelector('.form').addEventListener('submit', evt1 => {
     const cardEl = cardTemplate.cloneNode(true);
     cardEl.querySelector('.card__title').textContent = evt1.target.closest('form').querySelector('.form__item[name="title"]').value;
     cardEl.querySelector('.card__image').src = evt1.target.closest('form').querySelector('.form__item[name="link"]').value;
+    cardEl.querySelector('.card__image').alt = evt1.target.closest('form').querySelector('.form__item[name="title"]').value;
     addLikeEvent(cardEl.querySelector('.card__like'));
     addDeleteEvent(cardEl.querySelector('.card__trash'));
     addEnlargeEvent(cardEl.querySelector('.card__image'));
