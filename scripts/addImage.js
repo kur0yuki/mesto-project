@@ -11,6 +11,7 @@ popupPlace.querySelector('.form').addEventListener('submit', evt1 => {
     cardEl.querySelector('.card__image').src = evt1.target.closest('form').querySelector('.form__item[name="link"]').value;
     addLikeEvent(cardEl.querySelector('.card__like'));
     addDeleteEvent(cardEl.querySelector('.card__trash'));
+    addEnlargeEvent(cardEl.querySelector('.card__image'));
     cardField.prepend(cardEl);
 
     evt1.target.closest('.popup').classList.remove('popup_opened');
