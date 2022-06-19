@@ -1,26 +1,21 @@
 const editUserBtn = document.querySelector('.user-panel__edit-name');
+const popupUser = document.querySelector('.form[name="user"]').closest('.popup');
 
 editUserBtn.addEventListener('click', () => {
-  const popup = document.querySelector('.popup');
   const name = document.querySelector('.user-panel__name').textContent;
   const desc = document.querySelector('.user-panel__description').textContent;
-  const inputTemplate = document.querySelector('#input').content;
-  const nameInput = inputTemplate.cloneNode(true);
-  nameInput.querySelector('.form__item').name = 'name';
-  nameInput.querySelector('.form__item').placeholder = 'Имя';
-  nameInput.querySelector('.form__item').value = name;
 
-  const descInput = inputTemplate.cloneNode(true);
-  descInput.querySelector('.form__item').name = 'description';
-  descInput.querySelector('.form__item').placeholder = "Описание";
-  descInput.querySelector('.form__item').value = desc;
-  const inputContainer = document.createElement('fieldset');
-  inputContainer.classList.add('form__input-container');
-  inputContainer.append(nameInput, descInput);
-  popup.querySelector('.form__input-container').replaceWith(inputContainer);
+  popupUser.querySelector('.form__item[name="name"]').value = name;
+  popupUser.querySelector('.form__item[name="description"]').value = desc;
 
-  popup.classList.add('popup_opened');
-  document.querySelector('.form').addEventListener('submit', evt1 => {
+
+  popupUser.classList.add('popup_opened');
+
+
+});
+
+
+popupUser.querySelector('.form').addEventListener('submit', evt1 => {
     evt1.preventDefault();
     const nameEl = document.createElement('h1');
     nameEl.classList.add('user-panel__name');
@@ -32,11 +27,8 @@ editUserBtn.addEventListener('click', () => {
     document.querySelector('.user-panel__name').replaceWith(nameEl);
     document.querySelector('.user-panel__description').replaceWith(descEl);
     evt1.target.closest('.popup').classList.remove('popup_opened');
-  }, {'once':true});
+  });
 
-  document.querySelector('.popup__close').addEventListener('click', evt1 => {
+popupUser.querySelector('.popup__close').addEventListener('click', evt1 => {
     evt1.target.closest('.popup').classList.remove('popup_opened');
-  })
-});
-
-
+  });

@@ -1,23 +1,7 @@
 const addBtn = document.querySelector('.user-panel__add');
-addBtn.addEventListener('click', (e) => {
-  const popup = document.querySelector('.popup');
-  const inputTemplate = document.querySelector('#input').content;
-  const nameInput = inputTemplate.cloneNode(true);
-  nameInput.querySelector('.form__item').name = 'title';
-  nameInput.querySelector('.form__item').placeholder = 'Название';
+const popupPlace = document.querySelector('.form[name="new-place"]').closest('.popup');
 
-  const descInput = inputTemplate.cloneNode(true);
-  descInput.querySelector('.form__item').name = 'link';
-  descInput.querySelector('.form__item').placeholder = "Ссылка на картинку";
-
-  const inputContainer = document.createElement('fieldset');
-  inputContainer.classList.add('form__input-container');
-  inputContainer.append(nameInput, descInput);
-  popup.querySelector('.form__input-container').replaceWith(inputContainer);
-  popup.querySelector('.popup__title').textContent="Новое место";
-
-  popup.classList.add('popup_opened');
-  document.querySelector('.form').addEventListener('submit', evt1 => {
+popupPlace.querySelector('.form').addEventListener('submit', evt1 => {
     evt1.preventDefault();
     const cardTemplate = document.querySelector('#card').content;
     const cardField = document.querySelector('.photo-grid');
@@ -30,10 +14,13 @@ addBtn.addEventListener('click', (e) => {
     cardField.prepend(cardEl);
 
     evt1.target.closest('.popup').classList.remove('popup_opened');
-  }, {'once': true});
-
-  document.querySelector('.popup__close').addEventListener('click', evt1 => {
-    evt1.target.closest('.popup').classList.remove('popup_opened');
-  })
+  });
+addBtn.addEventListener('click', () => {
+  popupPlace.querySelectorAll('.form__item').forEach(item=>{item.value=""});
+      popupPlace.classList.add('popup_opened');
 });
 
+
+popupPlace.querySelector('.popup__close').addEventListener('click', evt1 => {
+    evt1.target.closest('.popup').classList.remove('popup_opened');
+  });

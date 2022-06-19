@@ -84,7 +84,19 @@
   </form>
     </div>
 </div>
-
+<div class="popup">
+  <div class="popup__container">
+    <h2 class="popup__title">Новое место</h2>
+    <button class="popup__close button" aria-label="закрыть"></button>
+  <form class="form" name="new-place">
+    <fieldset class="form__input-container">
+      <input class="form__item" name="title" placeholder="Название" type="text" value="">
+      <input class="form__item" name="link" placeholder="Ссылка" type="text" value="">
+    </fieldset>
+    <button class="form__button button" type="submit">Создать</button>
+  </form>
+    </div>
+</div>
 <template id="card">
       <article class="card">
       <img class="card__image" src="">
@@ -95,9 +107,7 @@
       </div>
     </article>
 </template>
-<template id="input">
-  <input class="form__item" name="name" placeholder="Имя" type="text" value="">
-</template>
+
 <script src="scripts/initialCards.js"></script>
 <script src="scripts/userEdit.js"></script>
 <script src="scripts/addImage.js"></script>
