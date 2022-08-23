@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8" lang="ru">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <link href="pages/index.css" rel="stylesheet">
   <title>Место</title>
 </head>
 <body class="page">
 <header class="header">
-  <img alt="mesto Russia" class="header__logo" src="images/logo.svg">
+  <img alt="mesto Russia" class="header__logo" src="<%=require('./images/logo.svg')%>">
 </header>
 <main class="content">
   <section class="user-panel">
-    <img alt="автор" class="user-panel__avatar" src="images/user-pic.jpg">
+    <img alt="автор" class="user-panel__avatar" src="<%=require('./images/user-pic.jpg')%>">
     <div class="user-panel__info">
       <div class="user-panel__name-container">
         <h1 class="user-panel__name">Жак-Ив Кусто</h1>
@@ -75,8 +74,6 @@
     </article>
 </template>
 
-<script src="scripts/initialCards.js"></script>
-<script src="scripts/index.js"></script>
 
 </body>
 </html>
