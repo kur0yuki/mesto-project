@@ -1,7 +1,8 @@
 import {initialCards} from './initialCards'
 import '../pages/index.css'
 import {closePopup, openPopup} from "./modal";
-import renderCard from "./card";
+import {renderCard, renderCardArray, setCardListeners} from "./card";
+import {enableValidation} from "./validate";
 
 
 const cardField = document.querySelector('.photo-grid');
@@ -27,14 +28,16 @@ const popupCardImage = popupCard.querySelector('.popup__image');
 const popupCardCaption = popupCard.querySelector('.popup__image-caption');
 
 
-btnEditUser.addEventListener('click', () => {
+btnEditUser.addEventListener('click', (evt) => {
   popupUserName.value = name.textContent;
   popupUserDescription.value = desc.textContent;
   openPopup(popupUser);
+  evt.stopPropagation();
 });
-btnAddPlace.addEventListener('click', () => {
+btnAddPlace.addEventListener('click', (evt) => {
   popupPlaceForm.reset();
   openPopup(popupPlace);
+  evt.stopPropagation();
 });
 
 
@@ -52,26 +55,14 @@ popupPlaceForm.addEventListener('submit', evt => {
   closePopup(popupPlace);
 });
 
-for (let i = 0; i < initialCards.length; i++) {
-  renderCard(initialCards[i].name, initialCards[i].link);
-}
+renderCardArray(initialCards);
+setCardListeners(cardField);
 
-cardField.addEventListener('click', evt => {
-  if (evt.target.classList.contains('card__like')) {
-    evt.target.classList.toggle('card__like_active')
-  }
-  if (evt.target.classList.contains('card__trash')) {
-    evt.target.closest('.card').remove();
-  }
-  if (evt.target.classList.contains('card__image')) {
-    popupCardImage.src = evt.target.src;
-    popupCardImage.alt = evt.target.alt;
-    popupCardCaption.textContent = evt.target.alt;
-    openPopup(popupCard);
-  }
-});
-document.addEventListener('click', evt => {
-  if (evt.target.classList.contains('popup__close')) {
-    closePopup(evt.target.closest('.popup'));
-  }
+enableValidation({
+  formSelector: '.form',
+  inputSelector: '.form__item',
+  submitButtonSelector: '.form__button',
+  inactiveButtonClass: 'form__button_disabled',
+  inputErrorClass: 'form__item_state_error',
+  errorClass: 'form__input-error_active'
 });

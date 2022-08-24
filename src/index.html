@@ -35,8 +35,8 @@
     <button class="popup__close button" aria-label="закрыть"></button>
   <form class="form" name="user">
     <fieldset class="form__input-container">
-      <input class="form__item" name="name" placeholder="Имя" type="text" value="Жак-Ив Кусто">
-      <input class="form__item" name="description" placeholder="Описание" type="text" value="Исследователь океана">
+      <input class="form__item" name="name" placeholder="Имя" type="text" value="Жак-Ив Кусто" required minlength="2" maxlength="40">
+      <input class="form__item" name="description" placeholder="Описание" type="text" value="Исследователь океана" required minlength="2" maxlength="200">
     </fieldset>
     <button class="form__button button" type="submit">Сохранить</button>
   </form>
@@ -49,8 +49,10 @@
     <button class="popup__close button" aria-label="закрыть"></button>
   <form class="form" name="new-place">
     <fieldset class="form__input-container">
-      <input class="form__item" name="title" placeholder="Название" type="text" value="">
-      <input class="form__item" name="link" placeholder="Ссылка" type="text" value="">
+      <input class="form__item" id="name" name="title" placeholder="Название" type="text" value="" required minlength="2" maxlength="30">
+      <div class="name-error form__input-error"></div>
+      <input class="form__item" id="link" name="link" placeholder="Ссылка" type="text" value="" required type="url">
+       <div class="link-error form__input-error"></div>
     </fieldset>
     <button class="form__button button" type="submit">Создать</button>
   </form>
