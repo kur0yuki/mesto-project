@@ -4,6 +4,7 @@
   color: #000;
   opacity: 0.2;
   cursor: default;
+  box-sizing: border-box;
 }
 
 .form__button_disabled:hover{

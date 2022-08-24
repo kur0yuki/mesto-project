@@ -24,33 +24,23 @@ const popupPlaceForm = popupPlace.querySelector('.form');
 const popupPlaceTitle = popupPlaceForm.querySelector('.form__item[name="title"]');
 const popupPlaceLink = popupPlaceForm.querySelector('.form__item[name="link"]');
 
-const popupCardImage = popupCard.querySelector('.popup__image');
-const popupCardCaption = popupCard.querySelector('.popup__image-caption');
-
-
 btnEditUser.addEventListener('click', (evt) => {
   popupUserName.value = name.textContent;
   popupUserDescription.value = desc.textContent;
   openPopup(popupUser);
-  evt.stopPropagation();
 });
 btnAddPlace.addEventListener('click', (evt) => {
   popupPlaceForm.reset();
   openPopup(popupPlace);
-  evt.stopPropagation();
 });
 
 
 popupUser.querySelector('.form').addEventListener('submit', evt => {
-  evt.preventDefault();
-
   name.textContent = popupUserName.value;
   desc.textContent = popupUserDescription.value;
-
   closePopup(popupUser);
 });
 popupPlaceForm.addEventListener('submit', evt => {
-  evt.preventDefault();
   renderCard(popupPlaceTitle.value, popupPlaceLink.value);
   closePopup(popupPlace);
 });
@@ -58,11 +48,5 @@ popupPlaceForm.addEventListener('submit', evt => {
 renderCardArray(initialCards);
 setCardListeners(cardField);
 
-enableValidation({
-  formSelector: '.form',
-  inputSelector: '.form__item',
-  submitButtonSelector: '.form__button',
-  inactiveButtonClass: 'form__button_disabled',
-  inputErrorClass: 'form__item_state_error',
-  errorClass: 'form__input-error_active'
-});
+enableValidation();
+
