@@ -3,7 +3,7 @@ import {closePopup, openPopup, setPopupListeners} from "./modal";
 import {renderCardObj} from "./card";
 import {enableValidation, resetForm} from "./validate";
 import {conf} from "./utils";
-import {addCard, checkStatus, getCards, getUserInfo, setUserInfo, updateAvatar} from "./api";
+import {addCard, getCards, getUserInfo, setUserInfo, updateAvatar} from "./api";
 
 const btnAddPlace = document.querySelector('.user-panel__add');
 const btnEditUser = document.querySelector('.user-panel__edit-name');
@@ -12,7 +12,7 @@ const popupPlace = document.querySelector('.popup_type_place');
 const popupUser = document.querySelector('.popup_type_profile');
 const popupAvatar = document.querySelector('.popup_type_avatar');
 
-const popupUserBtn = popupUser.querySelector('.form__button')
+const popupUserBtn = popupUser.querySelector('.form__button');
 const popupPlaceBtn = popupPlace.querySelector('.form__button');
 const popupAvatarBtn = popupAvatar.querySelector('.form__button');
 
@@ -49,61 +49,56 @@ avatarContainer.addEventListener('click', evt => {
 });
 
 popupUser.querySelector('.form').addEventListener('submit', evt => {
-  popupUserBtn.textContent = "Сохранение..."
+  popupUserBtn.textContent = "Сохранение...";
   setUserInfo(popupUserName.value, popupUserDescription.value)
-    .then(checkStatus)
     .then(data => {
       name.textContent = data.name;
       desc.textContent = data.about;
+      closePopup(popupUser);
     })
     .catch(console.log)
-    .finally(()=>{
-      closePopup(popupUser);
+    .finally(() => {
       popupUserBtn.textContent = "Сохранить"
     });
 
 });
 popupPlaceForm.addEventListener('submit', evt => {
-  popupPlaceBtn.textContent = "Сохранение..."
+  popupPlaceBtn.textContent = "Сохранение...";
   addCard(popupPlaceTitle.value, popupPlaceLink.value)
-    .then(checkStatus)
-    .then(card => renderCardObj(card, _id))
-    .catch(console.log)
-    .finally(()=>{
+    .then(card => {
+      renderCardObj(card, _id);
       closePopup(popupPlace);
+    })
+    .catch(console.log)
+    .finally(() => {
       popupPlaceBtn.textContent = "Создать"
     });
 });
 document.forms.avatar.addEventListener('submit', evt => {
-  popupAvatarBtn.textContent = "Сохранение..."
+  popupAvatarBtn.textContent = "Сохранение...";
   updateAvatar(evt.target.elements.link.value)
-    .then(checkStatus)
     .then(data => {
       avatar.src = data.avatar;
+      closePopup(popupAvatar)
     })
     .catch(console.log)
-    .finally(()=>{
-      closePopup(popupAvatar)
+    .finally(() => {
       popupAvatarBtn.textContent = "Сохранить"
     })
-})
+});
 
 setPopupListeners();
 enableValidation(conf);
 
-getUserInfo().then(checkStatus)
-  .then(data => {
-    name.textContent = data.name;
-    desc.textContent = data.about;
-    avatar.src = data.avatar;
-    _id = data._id;
-  })
-  .catch(status => {
-    console.log(status)
-  });
+Promise.all([
+  getUserInfo(),
+  getCards()
+]).then(([info, cards]) => {
+  name.textContent = info.name;
+  desc.textContent = info.about;
+  avatar.src = info.avatar;
+  _id = info._id;
 
-getCards().then(checkStatus)
-  .then(data => {
-    data.forEach(card => renderCardObj(card, _id));
-  })
-  .catch(console.log);
+  cards.forEach(card => renderCardObj(card, _id));
+}).catch(console.log);
+

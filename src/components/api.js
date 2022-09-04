@@ -1,5 +1,11 @@
-const token = 'a14ef751-2e04-445b-9224-d88ea9b735c0';
-const url = 'https://nomoreparties.co/v1/plus-cohort-14/';
+const config = {
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-14/',
+  headers: {
+    authorization: 'a14ef751-2e04-445b-9224-d88ea9b735c0',
+    'Content-Type': 'application/json'
+  }
+
+}
 
 export const checkStatus = res => {
   if (res.ok) {
@@ -10,83 +16,64 @@ export const checkStatus = res => {
 };
 
 export const getUserInfo = () => {
-  return fetch(url + 'users/me', {
-    headers: {
-      authorization: token
-    }
-  })
+  return fetch(config.baseUrl + 'users/me', {
+    headers: config.headers
+  }).then(checkStatus)
 };
 
 export const getCards = () => {
-  return fetch(url + 'cards', {
-    headers: {
-      authorization: token
-    }
-  })
+  return fetch(config.baseUrl + 'cards', {
+    headers: config.headers
+  }).then(checkStatus)
 };
 
 export const setUserInfo = (name, about) => {
-  return fetch(url + 'users/me', {
+  return fetch(config.baseUrl + 'users/me', {
     method: 'PATCH',
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    },
+    headers: config.headers,
     body: JSON.stringify({
       name,
       about
     })
-  })
+  }).then(checkStatus)
 };
 
 export const addCard = (name, link) => {
-  return fetch(url + 'cards', {
+  return fetch(config.baseUrl + 'cards', {
     method: 'POST',
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    },
+    headers: config.headers,
     body: JSON.stringify({
       name,
       link
     })
-  })
+  }).then(checkStatus)
 };
 
 export const removeCard = (cardId) => {
-  return fetch(url + 'cards/' + cardId, {
+  return fetch(config.baseUrl + 'cards/' + cardId, {
     method: 'DELETE',
-    headers: {
-      authorization: token
-    }
-  })
+    headers: config.headers
+  }).then(checkStatus)
 };
 
 export const addLike = (cardId) => {
-  return fetch(url + 'cards/likes/' + cardId, {
+  return fetch(config.baseUrl + 'cards/likes/' + cardId, {
     method: 'PUT',
-    headers: {
-      authorization: token
-    }
-  })
+    headers: config.headers
+  }).then(checkStatus)
 };
 
 export const removeLike = (cardId) => {
-  return fetch(url + 'cards/likes/' + cardId, {
+  return fetch(config.baseUrl + 'cards/likes/' + cardId, {
     method: 'DELETE',
-    headers: {
-      authorization: token
-    }
-  })
+    headers: config.headers
+  }).then(checkStatus)
 };
 
 export const updateAvatar = (avatar) => {
-  return fetch(url + 'users/me/avatar', {
+  return fetch(config.baseUrl + 'users/me/avatar', {
     method: 'PATCH',
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    },
+    headers: config.headers,
     body: JSON.stringify({avatar})
-  })
+  }).then(checkStatus)
 };
