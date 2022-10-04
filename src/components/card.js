@@ -1,105 +1,112 @@
-import {closePopup, openPopup} from "./modal";
-import {addLike, removeCard, removeLike} from "./api";
+export default class Card {
+  constructor({
+                likes,
+                name, link,
+                _id, owner
+              },
+              elementSelector,
+              {
+                addLike,
+                removeLike,
+                removeCard,
+                openCard
+              },
+              own_id) {
+    this._title = name;
+    this._link = link;
+    this._selector = elementSelector;
+    this._likes = likes;
+    this._id = _id;
+    this._own = owner._id === own_id;
+    this._handleAddLike = addLike;
+    this._handleRemoveLike = removeLike;
+    this._handleRemoveCard = removeCard;
+    this._handleOpenCard = openCard;
+    this._isLiked = this._liked()
+    this._myId = own_id
+    //console.log(this._myId)
+  }
 
-const popupCard = document.querySelector('.popup_type_card');
-const popupCardImage = popupCard.querySelector('.popup__image');
-const popupCardCaption = popupCard.querySelector('.popup__image-caption');
+  _getElement() {
+    return document.querySelector(this._selector)
+      .content
+      .querySelector('.card')
+      .cloneNode(true)
+  }
 
-const cardField = document.querySelector('.photo-grid');
-const popupCheck = document.querySelector('.popup_type_check');
-const confirmDeleteBtn = popupCheck.querySelector('.form__button');
+  _setEventListeners() {
+    this._imageEL.addEventListener('click', () => {
+      this._handleOpenCard()
+    });
 
-const cardTemplate = document.querySelector('#card').content;
-
-let delHandler;
-confirmDeleteBtn.addEventListener('click', delHandler);
-
-function createCard(title, link, _id, likes, own, userId) {
-  const cardEl = cardTemplate.cloneNode(true);
-  const cardImageEl = cardEl.querySelector('.card__image');
-  const cardLikeEl = cardEl.querySelector('.card__like');
-  const cardTrash = cardEl.querySelector('.card__trash');
-  const likeNum = cardEl.querySelector('.card__like-num');
-
-  const setLikes = (likes) => {
-    if (likes.length > 0) {
-      if (!cardEl.querySelector('.card__like-num')){
-        cardLikeEl.insertAdjacentElement('afterend', likeNum)
+    this._likesEL.addEventListener('click', () => {
+      if (this._isLiked) {
+        this._handleRemoveLike(this._id)
+      } else {
+        this._handleAddLike(this._id)
       }
-      likeNum.textContent = likes.length;
+      this._setLikes()
+    });
+
+    if (this._cardTrash) {
+      this._cardTrash.addEventListener('click', () => {
+          this._handleRemoveCard(this._id, this._element)
+        }
+      )
+    }
+
+  }
+
+  _fillLayout() {
+    this._element.querySelector('.card__title').textContent = this._title;
+    this._imageEL = this._element.querySelector('.card__image');
+    this._imageEL.src = this._link;
+    this._imageEL.alt = this._title;
+
+    this._likesEL = this._element.querySelector('.card__like');
+    this._likesNum = this._element.querySelector('.card__like-num');
+    this._setLikes();
+
+    this._cardTrash = this._element.querySelector('.card__trash');
+    if (!this._own) {
+      this._cardTrash.remove();
+      delete this._cardTrash
+    }
+  }
+
+  _setLikes() {
+    if (this._likes.length > 0) {
+      if (!this._element.querySelector('.card__like-num')) {
+        this._likesEL.insertAdjacentElement('afterend', this._likesNum)
+      }
+      this._likesNum.textContent = this._likes.length;
 
     } else {
-      likeNum.remove()
+      this._likesNum.remove()
     }
-    if (likes.some(like => like._id===userId)){
-      cardLikeEl.classList.add('card__like_active')
+    this._isLiked = this._liked();
+    if (this._isLiked) {
+      this._likesEL.classList.add('card__like_active')
     } else {
-      cardLikeEl.classList.remove('card__like_active')
+      this._likesEL.classList.remove('card__like_active')
     }
   };
-
-  cardEl.querySelector('.card__title').textContent = title;
-  cardImageEl.alt = title;
-  cardImageEl.src = link;
-  setLikes(likes);
-  /*if (likes.length > 0) {
-    likeNum.textContent = likes;
-  } else {
-    likeNum.remove()
-  }
-  if (liked) {
-    cardLikeEl.classList.add('card__like_active')
-  }
-*/
-  cardLikeEl.addEventListener('click', (evt) => {
-    if (Array.from(cardLikeEl.classList).includes('card__like_active')) {
-      removeLike(_id)
-        .then((data) => {
-          setLikes(data.likes)
-        })
-        .catch(console.log)
-    } else {
-      addLike(_id)
-        .then((data) => {
-          setLikes(data.likes)
-        })
-        .catch(console.log)
-    }
-  });
-
-  if (own) {
-    cardTrash.addEventListener('click', () => {
-      delHandler = clickDeleteHandler(_id, cardImageEl);
-      openPopup(popupCheck);
-    })
-  } else {
-    cardTrash.remove()
+  setLikes(likes){
+    this._likes=likes
+    this._setLikes()
   }
 
-  cardImageEl.addEventListener('click', (evt) => {
-    popupCardImage.src = evt.target.src;
-    popupCardImage.alt = evt.target.alt;
-    popupCardCaption.textContent = evt.target.alt;
-    openPopup(popupCard);
-  });
+  _liked() {
+    return this._likes.some(like => like._id === this._myId)
+  }
 
-  return cardEl;
+  generate() {
+    this._element = this._getElement();
+    this._fillLayout();
+
+    this._setEventListeners();
+
+    return this._element
+  }
+
 }
-
-
-export const renderCardObj = (card, _id) => {
-  const own = card.owner._id === _id;
-  const liked = card.likes.map(user => user._id).includes(_id);
-  cardField.prepend(createCard(card.name, card.link, card._id, card.likes, own, _id));
-};
-
-const clickDeleteHandler = (_id, card) => {
-  return evt => {
-    removeCard(_id)
-      .then(data => {
-        card.closest('.card').remove();
-        closePopup(popupCheck)
-      })
-      .catch(console.log)
-  }
-};

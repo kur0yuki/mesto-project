@@ -35,7 +35,7 @@
   <div class="popup__container popup__container_type_form">
     <h2 class="popup__title">Редактировать профиль</h2>
     <button class="popup__close button" aria-label="закрыть"></button>
-  <form class="form" name="user">
+  <form class="form" name="user" id="user-form">
     <fieldset class="form__input-container">
       <input class="form__item" id="name" name="name" placeholder="Имя" type="text" value="Жак-Ив Кусто"
              required minlength="2" maxlength="40"
@@ -43,7 +43,7 @@
              data-error-message="Поле может содержать латинские буквы, кириллические буквы, знаки дефиса и пробелы"
       >
       <div class="name-error form__input-error"></div>
-      <input class="form__item" id="desc" name="description" placeholder="Описание" type="text" value="Исследователь океана"
+      <input class="form__item" id="desc" name="about" placeholder="Описание" type="text" value="Исследователь океана"
              required minlength="2" maxlength="200"
              pattern="^[a-zA-Zа-яА-Я \-]+$"
              data-error-message="Поле может содержать латинские буквы, кириллические буквы, знаки дефиса и пробелы"
@@ -61,7 +61,7 @@
     <button class="popup__close button" aria-label="закрыть"></button>
   <form class="form" name="new-place">
     <fieldset class="form__input-container">
-      <input class="form__item" id="title" name="title" placeholder="Название" type="text" value=""
+      <input class="form__item" id="title" name="name" placeholder="Название" type="text" value=""
              required minlength="2" maxlength="30"
              pattern="^[a-zA-Zа-яА-Я \-]+$"
              data-error-message="Поле может содержать латинские буквы, кириллические буквы, знаки дефиса и пробелы"
