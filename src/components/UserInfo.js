@@ -1,9 +1,8 @@
 export default class UserInfo {
-  constructor({nameSelector, infoSelector}, infoCall) {
+  constructor({nameSelector, infoSelector, avatarSelector}) {
     this._name = document.querySelector(nameSelector);
     this._info = document.querySelector(infoSelector);
-    this.updateInfo = infoCall
-    //this.updateInfo()
+    this._avatar = document.querySelector(avatarSelector);
   }
 
 
@@ -11,9 +10,10 @@ export default class UserInfo {
     return {name: this._name.textContent, info: this._info.textContent, _id: this._id}
   }
 
-  setUserInfo({name, about, _id}) {
+  setUserInfo({name, about, avatar, _id}) {
     this._name.textContent = name;
     this._info.textContent = about
     this._id = _id
+    this._avatar.src = avatar
   }
 }

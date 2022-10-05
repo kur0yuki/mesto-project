@@ -9,18 +9,18 @@ import {
   avatar,
   deleteBtn
 } from '../utils/constants'
-import Api from "../components/api";
+import Api from "../components/Api";
 import Section from "../components/Section";
 import UserInfo from "../components/UserInfo";
 import FormValidator from "../components/FormValidator";
 import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
-import Popup from "../components/Popup";
-import Card from "../components/card";
+import Card from "../components/Card";
+import ConfirmationPopup from "../components/ConfirmationPopup";
 
-const cardCreator = function(id, cardFunctions){
+const createCard = function(id, cardFunctions){
   return function(data) {
-    return new Card(data, '#card', cardFunctions, id);
+    return new Card(data, '#card', cardFunctions, id).generate();
   }
 }
 
@@ -34,40 +34,46 @@ const api = new Api(config);
 const imagePopup = new PopupWithImage('.popup_type_card')
 imagePopup.setEventListeners()
 
-const deletePopup = new Popup('.popup_type_check')
+const deletePopup = new ConfirmationPopup('.popup_type_check', deleteHandler)
 deletePopup.setEventListeners()
-deleteBtn.addEventListener('click', ()=>{deleteHandler()})
+//deleteBtn.addEventListener('click', ()=>{deleteHandler()})
 
 const cardFunctions = {
-  addLike: function(id){
-    api.addLike(id)
-      .then(({likes})=> {this.setLikes(likes)})
+  addLike: function(card){
+    api.addLike(card.getData().id)
+      .then(({likes})=> {card.setLikes(likes)})
       .catch(console.log)
   },
-  removeLike: function(id){
-    api.removeLike(id)
-      .then(({likes})=> {this.setLikes(likes)})
+  removeLike: function(card){
+    api.removeLike(card.getData().id)
+      .then(({likes})=> {card.setLikes(likes)})
       .catch(console.log)
   },
-  removeCard: function(id, card){
+  removeCard: function(card){
+    const data=card.getData()
     deleteHandler = ()=> {
-      console.log(deleteBtn)
-      api.removeCard(id)
+      api.removeCard(data.id)
         .then(()=>{
-          card.remove()
+          data.el.remove()
           deletePopup.close()
         })
         .catch(console.log)
     }
+    deletePopup.changeEventListener(deleteHandler)
     deletePopup.open()
   },
-  openCard: function(){
-    imagePopup.open(this._link, this._title)
+  openCard: function(card){
+    const data=card.getData()
+    imagePopup.open(data.link, data.title)
   }
 }
 
 
-const userInfo = new UserInfo({nameSelector: '.user-panel__name', infoSelector: '.user-panel__description'},
+const userInfo = new UserInfo({
+    nameSelector: '.user-panel__name',
+    infoSelector: '.user-panel__description',
+  avatarSelector: '.user-panel__avatar'
+  },
   function(){
     api.getUserInfo()
       .then(({name, about, _id}) => {
@@ -84,45 +90,46 @@ Promise.all([
   api.getCards()
 ]).then(([info, cards]) => {
   userInfo.setUserInfo(info);
-  avatar.src = info.avatar;
 
-  section = new Section('.photo-grid', cardCreator(info._id, cardFunctions))
+  section = new Section('.photo-grid', createCard(info._id, cardFunctions))
   section.addArray(cards)
 }).catch(console.log);
 
 const userPopup = new PopupWithForm('.popup_type_profile', function(values){
-  this.setFormButtonText("Сохранение...");
+  userPopup.renderLoading(true);
   api.setUserInfo(values)
     .then(data => {
     userInfo.setUserInfo(data)
-  }).catch(console.log)
+  }).then(()=>{
+      userPopup.close()
+  })
+    .catch(console.log)
     .finally(()=>{
-      this.close()
-      this.setFormButtonText("Сохранить");
+      userPopup.renderLoading(false);
   })
 
 })
 userPopup.setEventListeners()
 
 const placePopup = new PopupWithForm('.popup_type_place', function(values){
-   this.setFormButtonText("Сохранение...");
+   placePopup.renderLoading(true);
   api.addCard(values)
     .then(data => {
       section.setItem(data)
+      placePopup.close()
     }).catch(console.log).finally(()=>{
-      this.close()
-      this.setFormButtonText("Сохранить");
+      placePopup.renderLoading(false);
   })
 })
 placePopup.setEventListeners()
 
 const avatarPopup = new PopupWithForm('.popup_type_avatar', function(values){
-  this.setFormButtonText("Сохранение...");
+  avatarPopup.renderLoading(true);
   api.updateAvatar(values).then(data=> {
-    avatar.src = data.avatar
+    userInfo.setUserInfo(data)
+    avatarPopup.close()
   }).catch(console.log).finally(()=>{
-      this.close()
-      this.setFormButtonText("Сохранить");
+      avatarPopup.renderLoading(false);
   })
 })
 avatarPopup.setEventListeners()
@@ -135,19 +142,20 @@ const avatarForm = new FormValidator(conf,'form[name=avatar]')
 avatarForm.enableValidation()
 
 btnEditUser.addEventListener('click', (evt) => {
-  userForm.setFieldValue('#name', userInfo.getUserInfo().name);
-  userForm.setFieldValue('#desc', userInfo.getUserInfo().info);
-  userForm.resetForm();
+  userPopup.setInputValues({
+    'name': userInfo.getUserInfo().name,
+    'about': userInfo.getUserInfo().info
+  });
+  userForm.resetValidation();
   userPopup.open()
 });
 
 btnAddPlace.addEventListener('click', (evt) => {
-  newPlaceForm.resetForm();
+  newPlaceForm.resetValidation();
   placePopup.open()
 });
 
 avatarContainer.addEventListener('click', evt => {
-  document.forms.avatar.reset();
-  avatarForm.resetForm();
+  avatarForm.resetValidation();
   avatarPopup.open();
 });

@@ -36,21 +36,21 @@ export default class Card {
 
   _setEventListeners() {
     this._imageEL.addEventListener('click', () => {
-      this._handleOpenCard()
+      this._handleOpenCard(this)
     });
 
     this._likesEL.addEventListener('click', () => {
       if (this._isLiked) {
-        this._handleRemoveLike(this._id)
+        this._handleRemoveLike(this)
       } else {
-        this._handleAddLike(this._id)
+        this._handleAddLike(this)
       }
-      this._setLikes()
+      //this._setLikes()
     });
 
     if (this._cardTrash) {
       this._cardTrash.addEventListener('click', () => {
-          this._handleRemoveCard(this._id, this._element)
+          this._handleRemoveCard(this)
         }
       )
     }
@@ -107,6 +107,10 @@ export default class Card {
     this._setEventListeners();
 
     return this._element
+  }
+
+  getData(){
+    return {id: this._id, el: this._element, title: this._title, link: this._link}
   }
 
 }

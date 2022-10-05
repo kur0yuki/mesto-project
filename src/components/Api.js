@@ -12,67 +12,71 @@ export default class Api {
     }
   }
 
+  _request(url, options) {
+    return fetch(url, options).then(this._checkStatus)
+  }
+
   getUserInfo() {
-    return fetch(this._baseUrl+'users/me', {
+    return this._request(this._baseUrl+'users/me', {
       headers: this._headers
-    }).then(this._checkStatus)
+    })
   };
 
   getCards() {
-    return fetch(this._baseUrl + 'cards', {
+    return this._request(this._baseUrl + 'cards', {
       headers: this._headers
-    }).then(this._checkStatus)
+    })
   };
 
   setUserInfo({name, about}) {
-    return fetch(this._baseUrl + 'users/me', {
+    return this._request(this._baseUrl + 'users/me', {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         name,
         about
       })
-    }).then(this._checkStatus)
+    })
   };
 
   addCard({name, link}) {
-    return fetch(this._baseUrl + 'cards', {
+    return this._request(this._baseUrl + 'cards', {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
         name,
         link
       })
-    }).then(this._checkStatus)
+    })
   };
 
   removeCard(cardId) {
-    return fetch(this._baseUrl + 'cards/' + cardId, {
+    return this._request(this._baseUrl + 'cards/' + cardId, {
       method: 'DELETE',
       headers: this._headers
-    }).then(this._checkStatus)
+    })
   };
 
   addLike(cardId) {
-    return fetch(this._baseUrl + 'cards/likes/' + cardId, {
+    return this._request(this._baseUrl + 'cards/likes/' + cardId, {
       method: 'PUT',
       headers: this._headers
-    }).then(this._checkStatus)
+    })
   };
 
   removeLike(cardId) {
-    return fetch(this._baseUrl + 'cards/likes/' + cardId, {
+    return this._request(this._baseUrl + 'cards/likes/' + cardId, {
       method: 'DELETE',
       headers: this._headers
-    }).then(this._checkStatus)
+    })
   };
 
   updateAvatar({link}) {
-    return fetch(this._baseUrl + 'users/me/avatar', {
+    return this._request(this._baseUrl + 'users/me/avatar', {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({avatar: link})
-    }).then(this._checkStatus)
+    })
   };
 }
 

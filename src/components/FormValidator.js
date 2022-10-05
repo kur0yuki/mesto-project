@@ -21,10 +21,6 @@ export default class FormValidator {
     });
   }
 
-  setFieldValue(input, value){
-    this._form.querySelector(input).value = value
-  }
-
   _toggleButton() {
     if (this._inputs.some(input => !input.validity.valid)) {
       this._formButton.classList.add(this._conf.inactiveButtonClass);
@@ -63,7 +59,7 @@ export default class FormValidator {
     errorElement.textContent = '';
   }
 
-  resetForm() {
+  resetValidation() {
     this._inputs.forEach(input => {
       this._hideInputError(input);
     });
