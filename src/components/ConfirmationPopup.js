@@ -18,8 +18,4 @@ export default class ConfirmationPopup extends Popup{
     console.log(this._submitBtn)
     this._submitBtn.addEventListener('click', this._handleSubmit)
   }
-
-  close() {
-    super.close();
-  }
 }
