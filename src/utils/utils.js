@@ -6,3 +6,5 @@ export const conf = {
   inputErrorClass: 'form__item_state_error',
   errorClass: 'form__input-error_active'
 };
+
+
